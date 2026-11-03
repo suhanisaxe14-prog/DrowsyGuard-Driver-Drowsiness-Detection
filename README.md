@@ -139,26 +139,6 @@ The objective of this project is to develop a webcam-based computer vision syste
 | `play_alarm()` | Plays a beep on a daemon thread so the video never freezes |
 | Main loop | Capture, detect, calibrate or decide, draw, alert, handle keys |
 
-### State Machine
-
-```mermaid
-stateDiagram-v2
-    [*] --> Calibrating
-    Calibrating --> Monitoring: 3 s elapsed, threshold = mean EAR x 0.75
-
-    state Monitoring {
-        [*] --> EyesOpen
-        EyesOpen --> EyesClosed: EAR below threshold, start stopwatch
-        EyesClosed --> EyesOpen: EAR recovers, blink counted if 0.05 s to 1.5 s
-        EyesClosed --> DrowsyAlert: closed 1.5 s or more, alerts + 1
-        DrowsyAlert --> EyesOpen: EAR recovers, alarm stops
-    }
-
-    Monitoring --> Calibrating: press c
-    Monitoring --> NoFace: no face detected
-    NoFace --> Monitoring: face returns, timer reset
-    Monitoring --> [*]: press q
-```
 
 ## ⚙️ How It Works
 
