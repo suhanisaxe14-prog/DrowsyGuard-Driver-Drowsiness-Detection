@@ -103,29 +103,6 @@ The objective of this project is to develop a webcam-based computer vision syste
 
 > **Note:** NumPy is pinned to `1.26.4` because NumPy 2.x caused compatibility conflicts with the OpenCV/MediaPipe stack used in this project.
 
-## 🏗 System Architecture
-
-### High-Level Pipeline
-
-```mermaid
-flowchart LR
-    A[Webcam<br/>cv2.VideoCapture] --> B[Preprocessing<br/>flip + BGR to RGB]
-    B --> C[MediaPipe<br/>Face Landmarker]
-    C --> D[Eye Landmark Extraction<br/>6 points x 2 eyes]
-    D --> E[EAR Computation<br/>average of both eyes]
-    E --> F{Calibrating?}
-    F -- Yes --> G[Collect EAR samples<br/>compute personal threshold]
-    F -- No --> H[Drowsiness State Machine<br/>check_eyes]
-    G --> I[HUD Rendering]
-    H --> I
-    H --> J{Alarm on?}
-    J -- Yes --> K[Red flash overlay<br/>+ message + beep thread]
-    K --> I
-    I --> L[cv2.imshow window]
-    L -- q --> M[Release camera and exit]
-    L -- c --> G
-```
-
 ### Layered View
 
 ```text
