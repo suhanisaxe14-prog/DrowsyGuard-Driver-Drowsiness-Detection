@@ -15,7 +15,6 @@ The project aims to demonstrate how computer vision can contribute to driver saf
 - [Project Objectives](#-project-objectives)
 - [Key Features](#-key-features)
 - [Technologies Used](#-technologies-used)
-- [System Architecture](#-system-architecture)
 - [How It Works](#-how-it-works)
 - [Eye Aspect Ratio (EAR)](#-eye-aspect-ratio-ear)
 - [System Workflow](#-system-workflow)
